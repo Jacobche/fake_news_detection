@@ -7,7 +7,7 @@ import pickle
 from sklearn.linear_model import LogisticRegression
 
 st.header("Disaster Tweets Classification App")
-data = pd.read_csv("https://raw.githubusercontent.com/Jacobche/fake_news_detection/main/X_test.csv")
+data = pd.read_csv("https://raw.githubusercontent.com/Jacobche/fake_news_detection/main/Combined_test.csv")
 X_test_df = data['combined_string']
 
 #load countvectorizer
@@ -30,7 +30,7 @@ LR.classes_ = classes_array
 LR.n_iter_ = n_iter
 
 if st.checkbox('Show Testing Dataframe'):
-    data
+    data['text']
 
 st.subheader("Best Model used is Logistic Regression")
 
@@ -44,6 +44,7 @@ if st.button('Prediction Now'):
     
     # Add a new column with the predicted results to the dataframe
     data['predicted_result'] = prediction
+    data = data.drop('combined_string', axis=1)
 
     # Display the new dataframe with predictions
     st.write(data)
