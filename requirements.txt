@@ -1,7 +1,6 @@
 streamlit==1.27.2
 numpy==1.26.0
 pandas==2.1.1
-jsonpointer==2.1
 scikit-learn-intelex==20230228.214818
 scipy==1.10.0
 
