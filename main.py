@@ -1,16 +1,10 @@
 import streamlit as st
 import numpy as np
 import pandas as pd
-import ast
-import string
-import re
-import nltk
 import json
 import pickle
 
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import f1_score
 
 st.header("Disaster Tweets Classification App")
 data = pd.read_csv("https://raw.githubusercontent.com/Jacobche/fake_news_detection/main/X_test.csv")
