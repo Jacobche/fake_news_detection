@@ -6,7 +6,7 @@ import pickle
 
 from sklearn.linear_model import LogisticRegression
 
-st.header("Disaster Tweets Classification App")
+st.header("Disaster Tweets Detection App")
 data = pd.read_csv("https://raw.githubusercontent.com/Jacobche/fake_news_detection/main/Combined_test.csv")
 X_test_df = data['combined_string']
 
@@ -32,11 +32,15 @@ LR.n_iter_ = n_iter
 if st.checkbox('Show Testing Dataframe'):
     data['text']
 
-st.subheader("Best Model used is Logistic Regression")
+st.subheader("Best ML Model used is Logistic Regression")
 
-st.text("Please press the button below to generate the classification results!")
+# Add a unique key to the text_input widget
+user_input = st.text_input('Enter Text Input', key="user_input")
 
-if st.button('Prediction Now'):
+
+st.write("Click the button below to generate the prediction results!")
+
+if st.button('Predict Now'):
     st.subheader("Prediction Results")
     st.write("Original Dataframe with Predictions:")
     # Predict
@@ -46,9 +50,11 @@ if st.button('Prediction Now'):
     data['predicted_result'] = prediction
     data = data.drop('combined_string', axis=1)
 
-    # Display the new dataframe with predictions
-    st.write(data)
-
-
-
-
+    # Filter the dataframe by user input
+    if user_input:
+        filtered_df = data[data['text'].str.contains(user_input)]
+        # Display the filtered dataframe
+        st.write(filtered_df)
+    else:
+        # If there is no user input, show the entire dataframe
+        st.write(data)
